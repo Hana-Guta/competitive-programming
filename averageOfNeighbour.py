@@ -1,12 +1,11 @@
 class Solution:
     def rearrangeArray(self, nums: List[int]) -> List[int]:
-        nums.sort()
-        for i in range(1,len(nums)-1):
-            if (nums[i-1] + nums[i+1])/ 2 == nums[i]:
-                for j in range(len(nums)):
-                    if (nums[i-1] + nums[i+1]) / 2 != nums[j]: 
-                        nums[i],nums[j] = nums[j] ,nums[i]
-                        break
+        def swap(l, r):
+            nums[l], nums[r] = nums[r], nums[l]
+        for i in range(1, len(nums)-1):
+            num1 = nums[i-1]
+            num = nums[i]
+            num2 = nums[i+1]
+            if num1 < num < num2 or num1 > num > num2:
+                swap(i+1, i)
         return nums
-                
-        
